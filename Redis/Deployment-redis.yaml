@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: namespace-redis
+  labels:
+    name: namespace-redis
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-redis
+  namespace: namespace-redis
+  labels:
+    app: redis
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+        env: dev
+    spec:
+      containers:
+      - name: redis
+        image: redis:latest
+        ports: 
+        - containerPort: 6379
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-redis
+  namespace: namespace-redis
+spec:
+  type: ClusterIP
+  selector:
+    app: redis
+  ports:
+      - port: 6379
+        targetPort: 6379

@@ -1,0 +1,81 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: namespace-flask
+  labels:
+    name: namespace-flask
+
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configmap-flask
+  namespace: namespace-flask
+data:
+  PGDB_HOST: "service-pgdb.namespace-pgdb.svc.cluster.local"
+  PGDB_USER: "postgres"
+  PGDB_NAME: "mydb"
+  REDIS_HOST: "service-redis.namespace-redis.svc.cluster.local"
+
+---
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: secret-flask
+  namespace: namespace-flask
+type: Opaque
+data:
+  PGDB_PASSWORD: cGFzc3dvcmQ=
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-flask
+  namespace: namespace-flask
+  labels:
+    app: flask
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flask
+  template:
+    metadata:
+      labels:
+        app: flask
+        env: dev
+        version: "v4"
+    spec:
+      containers:
+        - name: flask
+          image: vihangihk/flask:v4
+          ports:
+          - containerPort: 5000
+          envFrom:
+          - configMapRef:
+              name: configmap-flask
+          - secretRef:
+              name: secret-flask
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-flask
+  namespace: namespace-flask
+  labels:
+    app: flask
+    env: dev
+    version: "v4"
+spec:
+  type: LoadBalancer
+  selector:
+    app: flask
+  ports:
+    - port: 80
+      targetPort: 5000

@@ -1,0 +1,136 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+    name: namespace-pgdb
+    labels:
+        name: namespace-pgdb
+sops:
+    kms: []
+    gcp_kms:
+        - resource_id: projects/bustling-vim-441514-g9/locations/northamerica-northeast1/keyRings/my-keyring/cryptoKeys/my-key
+          created_at: "2024-11-20T00:39:39Z"
+          enc: CiQA3gIh27ArFBhW2JFCrvvxfSPk9tBRsU3LNxlNFA9iBdWyl6ISSQAR8bIOoEyYlGU2wZ6BERTdygkCnmEKqWmhNg3b/Bw+bqn8stlB1BRJKpBObJfjfdx/uRmwmrhLX4yVJYpnTEX4f1m1CVZOxgE=
+    azure_kv: []
+    hc_vault: []
+    age: []
+    lastmodified: "2024-11-20T00:39:42Z"
+    mac: ENC[AES256_GCM,data:L/g9kPhCVjMJYipLe4qLtj+z1hiYw6e3HqN2Fqy7U6xpYvh28DTQtGTD8AqoOyIkOoJYLoDI4OVfa1lAxJ1pEhnNTKdGoixdOW98Fx/q9UwbjBHDEBzjM0Affr6fblLmownTnEkghs2iTeHxv1DYUGbrZvrXVgoIJJlKXxDKl/A=,iv:RfY6XpyfmPwWYyarfxMXLhCtIlvUh/3dXTckK92UjDU=,tag:np1J1WunmP4LBh6aR8DNuw==,type:str]
+    pgp: []
+    encrypted_regex: ^(data)$
+    version: 3.9.1
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: configmap-pgdb
+    namespace: namespace-pgdb
+data:
+    POSTGRES_USER: ENC[AES256_GCM,data:RYCdkLHAI4Q=,iv:axrGAp1quOukBhnY6C+Dsmpum+sU47HbcZspb35wg/0=,tag:qPh0MZ6RMUh07K/SfJOpKw==,type:str]
+    POSTGRES_DB: ENC[AES256_GCM,data:WcP0RA==,iv:+8STSg2tt4qPcH4IG3RA8Tpmh69JSWV8luxy/Vak9VQ=,tag:pe2HFQRFiOhF5znxuyj8+Q==,type:str]
+sops:
+    kms: []
+    gcp_kms:
+        - resource_id: projects/bustling-vim-441514-g9/locations/northamerica-northeast1/keyRings/my-keyring/cryptoKeys/my-key
+          created_at: "2024-11-20T00:39:39Z"
+          enc: CiQA3gIh27ArFBhW2JFCrvvxfSPk9tBRsU3LNxlNFA9iBdWyl6ISSQAR8bIOoEyYlGU2wZ6BERTdygkCnmEKqWmhNg3b/Bw+bqn8stlB1BRJKpBObJfjfdx/uRmwmrhLX4yVJYpnTEX4f1m1CVZOxgE=
+    azure_kv: []
+    hc_vault: []
+    age: []
+    lastmodified: "2024-11-20T00:39:42Z"
+    mac: ENC[AES256_GCM,data:L/g9kPhCVjMJYipLe4qLtj+z1hiYw6e3HqN2Fqy7U6xpYvh28DTQtGTD8AqoOyIkOoJYLoDI4OVfa1lAxJ1pEhnNTKdGoixdOW98Fx/q9UwbjBHDEBzjM0Affr6fblLmownTnEkghs2iTeHxv1DYUGbrZvrXVgoIJJlKXxDKl/A=,iv:RfY6XpyfmPwWYyarfxMXLhCtIlvUh/3dXTckK92UjDU=,tag:np1J1WunmP4LBh6aR8DNuw==,type:str]
+    pgp: []
+    encrypted_regex: ^(data)$
+    version: 3.9.1
+---
+apiVersion: v1
+kind: Secret
+metadata:
+    name: secret-pgdb
+    namespace: namespace-pgdb
+type: Opaque
+data:
+    POSTGRES_PASSWORD: ENC[AES256_GCM,data:MEjAnr/oJSCT8NCe,iv:fpyNzYau7oZ1s5HX2ZcoEM8u0cXrtcyKtpkyDITDVoI=,tag:vrKR7Eozk5dYbnGmDY1zgw==,type:str]
+sops:
+    kms: []
+    gcp_kms:
+        - resource_id: projects/bustling-vim-441514-g9/locations/northamerica-northeast1/keyRings/my-keyring/cryptoKeys/my-key
+          created_at: "2024-11-20T00:39:39Z"
+          enc: CiQA3gIh27ArFBhW2JFCrvvxfSPk9tBRsU3LNxlNFA9iBdWyl6ISSQAR8bIOoEyYlGU2wZ6BERTdygkCnmEKqWmhNg3b/Bw+bqn8stlB1BRJKpBObJfjfdx/uRmwmrhLX4yVJYpnTEX4f1m1CVZOxgE=
+    azure_kv: []
+    hc_vault: []
+    age: []
+    lastmodified: "2024-11-20T00:39:42Z"
+    mac: ENC[AES256_GCM,data:L/g9kPhCVjMJYipLe4qLtj+z1hiYw6e3HqN2Fqy7U6xpYvh28DTQtGTD8AqoOyIkOoJYLoDI4OVfa1lAxJ1pEhnNTKdGoixdOW98Fx/q9UwbjBHDEBzjM0Affr6fblLmownTnEkghs2iTeHxv1DYUGbrZvrXVgoIJJlKXxDKl/A=,iv:RfY6XpyfmPwWYyarfxMXLhCtIlvUh/3dXTckK92UjDU=,tag:np1J1WunmP4LBh6aR8DNuw==,type:str]
+    pgp: []
+    encrypted_regex: ^(data)$
+    version: 3.9.1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: deployment-pgdb
+    namespace: namespace-pgdb
+    labels:
+        app: postgres
+spec:
+    replicas: 3
+    selector:
+        matchLabels:
+            app: postgres
+    template:
+        metadata:
+            labels:
+                app: postgres
+                env: dev
+        spec:
+            containers:
+                - name: postgres
+                  image: postgres:13
+                  ports:
+                    - containerPort: 5432
+                  envFrom:
+                    - configMapRef:
+                        name: configmap-pgdb
+                    - secretRef:
+                        name: secret-pgdb
+sops:
+    kms: []
+    gcp_kms:
+        - resource_id: projects/bustling-vim-441514-g9/locations/northamerica-northeast1/keyRings/my-keyring/cryptoKeys/my-key
+          created_at: "2024-11-20T00:39:39Z"
+          enc: CiQA3gIh27ArFBhW2JFCrvvxfSPk9tBRsU3LNxlNFA9iBdWyl6ISSQAR8bIOoEyYlGU2wZ6BERTdygkCnmEKqWmhNg3b/Bw+bqn8stlB1BRJKpBObJfjfdx/uRmwmrhLX4yVJYpnTEX4f1m1CVZOxgE=
+    azure_kv: []
+    hc_vault: []
+    age: []
+    lastmodified: "2024-11-20T00:39:42Z"
+    mac: ENC[AES256_GCM,data:L/g9kPhCVjMJYipLe4qLtj+z1hiYw6e3HqN2Fqy7U6xpYvh28DTQtGTD8AqoOyIkOoJYLoDI4OVfa1lAxJ1pEhnNTKdGoixdOW98Fx/q9UwbjBHDEBzjM0Affr6fblLmownTnEkghs2iTeHxv1DYUGbrZvrXVgoIJJlKXxDKl/A=,iv:RfY6XpyfmPwWYyarfxMXLhCtIlvUh/3dXTckK92UjDU=,tag:np1J1WunmP4LBh6aR8DNuw==,type:str]
+    pgp: []
+    encrypted_regex: ^(data)$
+    version: 3.9.1
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: service-pgdb
+    namespace: namespace-pgdb
+spec:
+    type: ClusterIP
+    selector:
+        app: postgres
+    ports:
+        - port: 5432
+          targetPort: 5432
+sops:
+    kms: []
+    gcp_kms:
+        - resource_id: projects/bustling-vim-441514-g9/locations/northamerica-northeast1/keyRings/my-keyring/cryptoKeys/my-key
+          created_at: "2024-11-20T00:39:39Z"
+          enc: CiQA3gIh27ArFBhW2JFCrvvxfSPk9tBRsU3LNxlNFA9iBdWyl6ISSQAR8bIOoEyYlGU2wZ6BERTdygkCnmEKqWmhNg3b/Bw+bqn8stlB1BRJKpBObJfjfdx/uRmwmrhLX4yVJYpnTEX4f1m1CVZOxgE=
+    azure_kv: []
+    hc_vault: []
+    age: []
+    lastmodified: "2024-11-20T00:39:42Z"
+    mac: ENC[AES256_GCM,data:L/g9kPhCVjMJYipLe4qLtj+z1hiYw6e3HqN2Fqy7U6xpYvh28DTQtGTD8AqoOyIkOoJYLoDI4OVfa1lAxJ1pEhnNTKdGoixdOW98Fx/q9UwbjBHDEBzjM0Affr6fblLmownTnEkghs2iTeHxv1DYUGbrZvrXVgoIJJlKXxDKl/A=,iv:RfY6XpyfmPwWYyarfxMXLhCtIlvUh/3dXTckK92UjDU=,tag:np1J1WunmP4LBh6aR8DNuw==,type:str]
+    pgp: []
+    encrypted_regex: ^(data)$
+    version: 3.9.1
